@@ -29,17 +29,18 @@ public class Turret {
         manualAngleOffsetRadians = 0;
         create();
     }
-    private static final double TICKS_PER_REV = 145.1;
-    private static final double TURRET_GEAR_RATIO = 5.1;
+    private static final double TICKS_PER_REV = 145.1; //I think this is still right, revolutions per tick
+    private static final double TURRET_GEAR_RATIO = 5.1; //have to change later
     private static final double TICKS_PER_RADIAN = (TICKS_PER_REV * TURRET_GEAR_RATIO) / (Math.PI * 2);
     private static final double ENCODER_RESET_THRESHOLD_TICKS = 5;
     public static double multiplier = 0;
     public void aim(Pose goal, Pose current, Follower f){
-        double goalAngle = Math.atan2(goal.y() - current.y(), goal.x() - current.x());
+        double hiveAngle = Math.atan2(goal.y() - current.y(), goal.x() - current.x()); //angle of hive from robot
         double robotHeading = current.heading();
         // Use the shortest signed angle so mirrored blue headings near the +/-pi wrap
         // don't send the turret to the opposite hard stop.
-        double turretAngle = normalizeSigned(goalAngle - robotHeading) + manualAngleOffsetRadians + f.tangentialVelocity()*multiplier;
+        double turretAngle = normalizeSigned(hiveAngle - robotHeading) + manualAngleOffsetRadians + f.tangentialVelocity()*multiplier;
+        //will change below based on turret limits
         if(turretAngle >= Math.PI/2){
             turretAngle = Math.PI/2;
         }
@@ -77,7 +78,7 @@ public class Turret {
     }
     private final ElapsedTime turretTime= new ElapsedTime();
     private double lastTurretError = 0;
-
+    //pid for turret
     public void turnTurret(double tPosition) {
         double cPosition = t.getCurrentPosition() + getTurretOffset();
         double error = tPosition - cPosition;
@@ -106,6 +107,7 @@ public class Turret {
         private static double lowPassAlpha = 0.2;
         private static double maxChange = 0.05;
     }
+    //interpLUT for SOTM
     InterpLUT flightTime = new InterpLUT();
     public void create(){
         flightTime.add(0, 0.22);

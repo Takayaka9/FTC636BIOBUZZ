@@ -1,10 +1,7 @@
 package org.firstinspires.ftc.teamcode.robot.subsystems;
 
-import static com.pedropathing.ivy.commands.Commands.infinite;
-
 import com.bylazar.configurables.annotations.Configurable;
 import com.pedropathing.math.Pose;
-import com.pedropathing.ivy.CommandBuilder;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.seattlesolvers.solverslib.util.InterpLUT;
@@ -19,6 +16,7 @@ public class Hood {
         lut.add(10000, p6);
         lut.createLUT();
     }
+    //dx is for distance from hive, px is for position
     static double d1 = 36; static double p1 = 0.99; //taka tuned
     static double d2 = 53.6; static double p2 = 0.88; //taka tuned
     static double d3 = 73.5; static double p3 = 0.85;//tuned
@@ -26,7 +24,7 @@ public class Hood {
     static double d5 = 135.5; static double p5 = 0.85; //max
     static double d6 = 150; static double p6 = 0.85; //max
     //angles hood based on poses passed in
-    public void angleHood(Pose current, Pose target) {
+    public void angleHood(Pose target, Pose current) {
         double targetDistance = current.distance(target);
         double angle = lut.get(targetDistance);
         setPosition(angle);
