@@ -2,10 +2,11 @@ package org.firstinspires.ftc.teamcode.robot.subsystems;
 
 import static com.pedropathing.ivy.commands.Commands.instant;
 
+import com.bylazar.configurables.annotations.Configurable;
 import com.pedropathing.ivy.CommandBuilder;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
-
+@Configurable
 public class Stopper {
     private final Servo s;
     //positions
