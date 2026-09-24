@@ -13,6 +13,8 @@ import org.firstinspires.ftc.teamcode.robot.subsystems.Stopper;
 import org.firstinspires.ftc.teamcode.robot.subsystems.Turret;
 import org.firstinspires.ftc.teamcode.util.Alliance;
 import org.firstinspires.ftc.teamcode.util.RobotConstants;
+import org.firstinspires.ftc.teamcode.util.Sides;
+
 @Configurable
 public class Kaoru {
     //our robot class; name to be changed
@@ -26,6 +28,7 @@ public class Kaoru {
     public Pose hivePos;
     public Pose flowerHivePos; //flower side hive
     public Pose hiveAim; //the alliance AND side we're aiming at (naming up for debate)
+    Sides side;
     //initializing all of our subsystems
     public Kaoru(HardwareMap h, Alliance a){
         follower = Constants.create(h);
@@ -36,6 +39,7 @@ public class Kaoru {
         stop = new Stopper(h);
         setHives(a);
         hiveAim = hivePos; //default hive side is non-flower side (up at start of auto)
+        side = Sides.NONFLOWER; //default hive side is non-flower side (up at start of auto)
     }
     public void periodic(){
         turret.aim(hiveAim, follower.pose(), follower);
@@ -54,11 +58,13 @@ public class Kaoru {
         }
     }
     public void switchSide(){
-        if(hiveAim == hivePos){
+        if(side == Sides.NONFLOWER){
             hiveAim = flowerHivePos;
+            side = Sides.FLOWER;
         }
-        else if(hiveAim == flowerHivePos){
+        else if(side == Sides.FLOWER){
             hiveAim = hivePos;
+            side = Sides.NONFLOWER;
         }
     }
 }
