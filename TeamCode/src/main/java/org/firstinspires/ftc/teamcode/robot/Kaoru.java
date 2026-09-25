@@ -42,6 +42,7 @@ public class Kaoru {
         side = Sides.NONFLOWER; //default hive side is non-flower side (up at start of auto)
     }
     public void periodic(){
+        follower.update();
         turret.aim(hiveAim, follower.pose(), follower);
         hood.angleHood(hiveAim, follower.pose());
         fly.setTarget(hiveAim, follower.pose());

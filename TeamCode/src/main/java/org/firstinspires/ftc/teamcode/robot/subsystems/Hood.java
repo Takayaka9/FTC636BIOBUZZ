@@ -34,6 +34,6 @@ public class Hood {
     }
     //yeah idk when we'd use this but
     public void down(){
-        h.setPosition(1);
+        setPosition(1);
     }
 }

@@ -9,13 +9,14 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.teamcode.opmodes.BaseOpMode;
 import org.firstinspires.ftc.teamcode.pedro.Constants;
 import org.firstinspires.ftc.teamcode.robot.subsystems.Flywheel;
 import org.firstinspires.ftc.teamcode.robot.subsystems.Hood;
 import org.firstinspires.ftc.teamcode.util.RobotConstants;
 @Configurable
 @TeleOp
-public class FlyHoodTester extends OpMode {
+public class FlyHoodTester extends BaseOpMode {
     Hood hood;
     Flywheel fly;
     public static double position = 0;

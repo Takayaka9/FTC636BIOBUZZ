@@ -15,10 +15,13 @@ public class Stopper {
     public Stopper(HardwareMap h){
         s = h.get(Servo.class, "stopper");
     }
+    public void setPosition(double position){
+        s.setPosition(position);
+    }
     public CommandBuilder open(){
-        return instant(() -> s.setPosition(open));
+        return instant(() -> setPosition(open));
     }
     public CommandBuilder close(){
-        return instant(() -> s.setPosition(close));
+        return instant(() -> setPosition(close));
     }
 }
