@@ -43,10 +43,18 @@ public class Kaoru {
     }
     public void periodic(){
         follower.update();
+        fly.run(fly.getTarget());
+    }
+    public void automatic(){
         turret.aim(hiveAim, follower.pose(), follower);
         hood.angleHood(hiveAim, follower.pose());
         fly.setTarget(hiveAim, follower.pose());
-        fly.run(fly.getTarget());
+    }
+    public void manual(){
+        turret.turnTurret(0);
+        //hood.setPosition(0);
+        //fly.setTarget(1000);
+        //find neutral values for both!
     }
     private void setHives(Alliance a){
         if(a == Alliance.RED){
