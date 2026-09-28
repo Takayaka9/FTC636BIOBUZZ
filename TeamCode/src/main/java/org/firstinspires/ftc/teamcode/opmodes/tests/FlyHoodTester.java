@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.opmodes.tests;
 //import com.bylazar.configurables.annotations.Configurable;
 //import com.bylazar.telemetry.PanelsTelemetry;
 //import com.bylazar.telemetry.TelemetryManager;
+import com.acmerobotics.dashboard.config.Config;
 import com.pedropathing.follower.Follower;
 import com.pedropathing.math.Pose;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
@@ -16,6 +17,7 @@ import org.firstinspires.ftc.teamcode.robot.subsystems.Hood;
 import org.firstinspires.ftc.teamcode.util.RobotConstants;
 //@Configurable
 @TeleOp
+@Config
 public class FlyHoodTester extends BaseOpMode {
     Hood hood;
     Flywheel fly;

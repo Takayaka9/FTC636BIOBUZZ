@@ -1,11 +1,12 @@
 package org.firstinspires.ftc.teamcode.robot.subsystems;
 
 //import com.bylazar.configurables.annotations.Configurable;
+import com.acmerobotics.dashboard.config.Config;
 import com.pedropathing.math.Pose;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.seattlesolvers.solverslib.util.InterpLUT;
-//@Configurable
+@Config
 public class Hood {
     private final Servo h;
     private final InterpLUT lut = new InterpLUT();

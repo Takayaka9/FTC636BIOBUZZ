@@ -4,6 +4,7 @@ package org.firstinspires.ftc.teamcode.opmodes.tests;
 //import com.bylazar.panels.Panels;
 //import com.bylazar.telemetry.PanelsTelemetry;
 //import com.bylazar.telemetry.TelemetryManager;
+import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -13,7 +14,7 @@ import org.firstinspires.ftc.teamcode.robot.subsystems.Stopper;
 import org.firstinspires.ftc.teamcode.robot.subsystems.Wedge;
 
 @TeleOp
-//@Configurable
+@Config
 public class ServoTester extends BaseOpMode {
     //idrk if this will work but oh well
     //TelemetryManager telemetry;

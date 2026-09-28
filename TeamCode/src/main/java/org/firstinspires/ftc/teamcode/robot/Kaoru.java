@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.robot;
 
 //import com.bylazar.configurables.annotations.Configurable;
+import com.acmerobotics.dashboard.config.Config;
 import com.pedropathing.follower.Follower;
 import com.pedropathing.math.Pose;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -15,7 +16,7 @@ import org.firstinspires.ftc.teamcode.util.Alliance;
 import org.firstinspires.ftc.teamcode.util.RobotConstants;
 import org.firstinspires.ftc.teamcode.util.Sides;
 
-//@Configurable
+@Config
 public class Kaoru {
     //our robot class; name to be changed
     //add all functions that require multiple subsystems that are used in both auto and tele here
