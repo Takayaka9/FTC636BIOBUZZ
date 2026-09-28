@@ -36,7 +36,7 @@ public class Kaoru {
         turret = new Turret(h);
         hood = new Hood(h);
         intake = new Intake(h);
-        stop = new Stopper(h);
+        //stop = new Stopper(h);
         setHives(a);
         hiveAim = hivePos; //default hive side is non-flower side (up at start of auto)
         side = Sides.NONFLOWER; //default hive side is non-flower side (up at start of auto)
