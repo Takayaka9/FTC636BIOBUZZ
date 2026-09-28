@@ -22,10 +22,8 @@ public class Hood implements Mechanism {
         lut.add(10000, p6);
         lut.createLUT();
     }
-    @NonNull
-    @Override
-    public Command getDefaultCommand() {
-        return instant(this::createInterpLUT);
+    public Hood(){
+        createInterpLUT();
     }
     @Override
     public void periodic() {

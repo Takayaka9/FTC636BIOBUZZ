@@ -25,7 +25,7 @@ public class Kaoru implements NextRobot {
     //our robot class; name to be changed
     //add all functions that require multiple subsystems that are used in both auto and tele here
     public Follower follower;
-    public final Flywheel fly;
+    public final Flywheel fly = new Flywheel();
     public final Hood hood = new Hood();
     public final Intake intake;
     public final Stopper stop = new Stopper();
@@ -37,7 +37,6 @@ public class Kaoru implements NextRobot {
     //initializing all of our subsystems
     public Kaoru(HardwareMap h, Alliance a){
         follower = Constants.create(h);
-        fly = new Flywheel(h);
         turret = new Turret(h);
         intake = new Intake(h);
         setHives(a);

@@ -17,21 +17,17 @@
 //@Configurable
 //public class Flywheel implements Mechanism {
 //    private final NextMotor fly = new NextMotor("fly");
-//
-//    @NonNull
-//    @Override
-//    public Command getDefaultCommand() {
-//        return
-//    }
-//
 //    private final InterpLUT lut = new InterpLUT();
-//    public Flywheel(){
-//        fly.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-//        fly.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
+//    private void createrInterpLUT(){
 //        lut.add(0, r1);
 //        lut.add(d1, r1);
 //        lut.add(1000, r6);
 //        lut.createLUT();
+//    }
+//    public Flywheel(){
+//        fly.setZeroPowerBehavior(NextMotor.ZeroPowerBehavior.FLOAT);
+//        fly.setDirection(NextMotor.Direction.FORWARD);
+//        createrInterpLUT();
 //    }
 //    //bangbang controller (not in use)
 //    private void bangbang(double target, DcMotorEx m){
