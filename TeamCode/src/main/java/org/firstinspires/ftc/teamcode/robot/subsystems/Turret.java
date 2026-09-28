@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.robot.subsystems;
 import static com.pedropathing.ivy.commands.Commands.instant;
 import static com.pedropathing.utils.Angle.normalizeSigned;
 
-import com.bylazar.configurables.annotations.Configurable;
+//import com.bylazar.configurables.annotations.Configurable;
 import com.pedropathing.follower.Follower;
 import com.pedropathing.ivy.CommandBuilder;
 import com.pedropathing.math.Pose;
@@ -15,7 +15,7 @@ import com.seattlesolvers.solverslib.util.InterpLUT;
 import org.firstinspires.ftc.teamcode.util.RobotConstants;
 
 
-@Configurable
+//@Configurable
 public class Turret {
     private final DcMotorEx t;
     private double encoderPositionOffsetTicks;
@@ -96,7 +96,7 @@ public class Turret {
         t.setPower(output);
     }
     @SuppressWarnings("FieldMayBeFinal")
-    @Configurable
+    //@Configurable
     public static class TurretConstants {
         private static double Kp = 0.03;
         private static double Kf = -0.1;

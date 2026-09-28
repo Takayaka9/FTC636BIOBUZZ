@@ -1,9 +1,9 @@
 package org.firstinspires.ftc.teamcode.opmodes.tests;
 
-import com.bylazar.configurables.annotations.Configurable;
-import com.bylazar.panels.Panels;
-import com.bylazar.telemetry.PanelsTelemetry;
-import com.bylazar.telemetry.TelemetryManager;
+//import com.bylazar.configurables.annotations.Configurable;
+//import com.bylazar.panels.Panels;
+//import com.bylazar.telemetry.PanelsTelemetry;
+//import com.bylazar.telemetry.TelemetryManager;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -13,10 +13,10 @@ import org.firstinspires.ftc.teamcode.robot.subsystems.Stopper;
 import org.firstinspires.ftc.teamcode.robot.subsystems.Wedge;
 
 @TeleOp
-@Configurable
+//@Configurable
 public class ServoTester extends BaseOpMode {
     //idrk if this will work but oh well
-    TelemetryManager telemetry;
+    //TelemetryManager telemetry;
     Stopper stopper;
     Hood hood;
     Wedge wedge;
@@ -24,7 +24,7 @@ public class ServoTester extends BaseOpMode {
     public static double position = 0;
     @Override
     public void init() {
-        telemetry = PanelsTelemetry.INSTANCE.getTelemetry();
+        //telemetry = PanelsTelemetry.INSTANCE.getTelemetry();
         stopper = new Stopper(hardwareMap);
         hood = new Hood(hardwareMap);
         wedge = new Wedge(hardwareMap);
@@ -32,9 +32,9 @@ public class ServoTester extends BaseOpMode {
 
     @Override
     public void loop() {
-        telemetry.update();
-        telemetry.debug("mode", mode);
-        telemetry.debug("position", position);
+//        telemetry.update();
+//        telemetry.debug("mode", mode);
+//        telemetry.debug("position", position);
         telemetry.addLine("options: stopper, hood, wedge");
         if(mode.equals("stopper")){
             stopper.setPosition(position);

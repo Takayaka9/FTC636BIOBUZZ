@@ -5,6 +5,6 @@ import org.firstinspires.ftc.teamcode.util.Alliance;
 
 public class BaseTele extends BaseOpMode {
     public BaseTele(Alliance a) {
-        super(a);
+        //super(a);
     }
 }

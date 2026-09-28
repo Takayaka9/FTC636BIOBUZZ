@@ -1,14 +1,11 @@
 package org.firstinspires.ftc.teamcode.robot.subsystems;
 
-import com.bylazar.configurables.annotations.Configurable;
 import com.pedropathing.math.Pose;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.seattlesolvers.solverslib.util.InterpLUT;
 
-
-@Configurable
 public class Flywheel {
     private final DcMotorEx fly;
     private final InterpLUT lut = new InterpLUT();
