@@ -27,10 +27,9 @@ public class Hood implements Mechanism {
     public Command getDefaultCommand() {
         return instant(this::createInterpLUT);
     }
-
     @Override
     public void periodic() {
-
+        h.setPosition(servoPosition);
     }
 
     //dx is for distance from hive, px is for position
@@ -46,8 +45,9 @@ public class Hood implements Mechanism {
         double angle = lut.get(targetDistance);
         setPosition(angle);
     }
+    private double servoPosition;
     public void setPosition(double position){
-        h.setPosition(position);
+        servoPosition = position;
     }
     //yeah idk when we'd use this but
     public void down(){
