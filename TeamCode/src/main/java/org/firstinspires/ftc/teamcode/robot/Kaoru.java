@@ -15,15 +15,20 @@ import org.firstinspires.ftc.teamcode.util.Alliance;
 import org.firstinspires.ftc.teamcode.util.RobotConstants;
 import org.firstinspires.ftc.teamcode.util.Sides;
 
+import java.util.Set;
+
+import dev.nextftc.robot.Mechanism;
+import dev.nextftc.robot.NextRobot;
+
 @Configurable
-public class Kaoru {
+public class Kaoru implements NextRobot {
     //our robot class; name to be changed
     //add all functions that require multiple subsystems that are used in both auto and tele here
     public Follower follower;
     public final Flywheel fly;
-    public final Hood hood;
+    public final Hood hood = new Hood();
     public final Intake intake;
-    public final Stopper stop;
+    public final Stopper stop = new Stopper();
     public final Turret turret;
     public Pose hivePos;
     public Pose flowerHivePos; //flower side hive
@@ -34,12 +39,14 @@ public class Kaoru {
         follower = Constants.create(h);
         fly = new Flywheel(h);
         turret = new Turret(h);
-        hood = new Hood(h);
         intake = new Intake(h);
-        //stop = new Stopper(h);
         setHives(a);
         hiveAim = hivePos; //default hive side is non-flower side (up at start of auto)
         side = Sides.NONFLOWER; //default hive side is non-flower side (up at start of auto)
+    }
+    @Override
+    public Set<Mechanism> getMechanisms(){
+        return Set.of(stop, hood);
     }
     public void periodic(){
         follower.update();
