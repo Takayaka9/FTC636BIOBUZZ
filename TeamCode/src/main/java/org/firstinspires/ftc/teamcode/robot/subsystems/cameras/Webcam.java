@@ -3,29 +3,39 @@ package org.firstinspires.ftc.teamcode.robot.subsystems.cameras;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-import org.openftc.easyopencv.OpenCvCamera;
-import org.openftc.easyopencv.OpenCvCameraFactory;
-import org.openftc.easyopencv.OpenCvCameraRotation;
+import org.firstinspires.ftc.vision.VisionPortal;
+import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
+import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
+import org.firstinspires.ftc.vision.apriltag.AprilTagSingleDetection;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Webcam {
+    private final WebcamName webcamName;
+    private AprilTagProcessor aprilTagProcessor;
+    private VisionPortal visionPortal;
     public Webcam(HardwareMap hardwareMap){
-        WebcamName webcamName = hardwareMap.get(WebcamName.class, "NAME_OF_CAMERA_IN_CONFIG_FILE");
-        OpenCvCamera camera = OpenCvCameraFactory.getInstance().createWebcam(webcamName);
-        camera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener()
-        {
-            @Override
-            public void onOpened()
-            {
-                camera.startStreaming(320, 240, OpenCvCameraRotation.UPRIGHT);
+        webcamName = hardwareMap.get(WebcamName.class, "webcam");
+    }
+    public void create(){
+        aprilTagProcessor = AprilTagProcessor.easyCreateWithDefaults();
+        visionPortal = VisionPortal.easyCreateWithDefaults(webcamName, aprilTagProcessor);
+    }
+    public void close(){
+        visionPortal.close();
+    }
+    public ArrayList<Integer> getDetectedIds() {
+        ArrayList<AprilTagDetection> detections = aprilTagProcessor.getDetections();
+        ArrayList<Integer> ids = new ArrayList<>();
+
+        if (detections != null) {
+            for (AprilTagDetection detection : detections) {
+                if (detection instanceof AprilTagSingleDetection) {
+                    ids.add(((AprilTagSingleDetection) detection).id);
+                }
             }
-            @Override
-            public void onError(int errorCode)
-            {
-                /*
-                 * This will be called if the camera could not be opened
-                 */
-            }
-        });
-        //camera.setPipeline(yourPipeline);
+        }
+        return ids;
     }
 }

@@ -12,6 +12,7 @@ import org.firstinspires.ftc.teamcode.robot.subsystems.Hood;
 import org.firstinspires.ftc.teamcode.robot.subsystems.Intake;
 import org.firstinspires.ftc.teamcode.robot.subsystems.Stopper;
 import org.firstinspires.ftc.teamcode.robot.subsystems.Turret;
+import org.firstinspires.ftc.teamcode.robot.subsystems.cameras.Webcam;
 import org.firstinspires.ftc.teamcode.util.Alliance;
 import org.firstinspires.ftc.teamcode.util.RobotConstants;
 import org.firstinspires.ftc.teamcode.util.Sides;
@@ -26,6 +27,7 @@ public class Kaoru {
     public final Intake intake;
     public final Stopper stop;
     public final Turret turret;
+    public final Webcam webcam;
     public Pose hivePos;
     public Pose flowerHivePos; //flower side hive
     public Pose hiveAim; //the alliance AND side we're aiming at (naming up for debate)
@@ -38,6 +40,7 @@ public class Kaoru {
         hood = new Hood(h);
         intake = new Intake(h);
         stop = new Stopper(h);
+        webcam = new Webcam(h);
         setHives(a);
         hiveAim = hivePos; //default hive side is non-flower side (up at start of auto)
         side = Sides.NONFLOWER; //default hive side is non-flower side (up at start of auto)
@@ -76,5 +79,10 @@ public class Kaoru {
             hiveAim = hivePos;
             side = Sides.NONFLOWER;
         }
+    }
+    public void endAuto(){
+        webcam.close();
+        RobotConstants.turretPosTransfer = turret.getPosition();
+        RobotConstants.poseTransfer = follower.pose();
     }
 }
