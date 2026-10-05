@@ -3,7 +3,9 @@ package org.firstinspires.ftc.teamcode.opmodes.tests;
 //import com.bylazar.configurables.annotations.Configurable;
 //import com.bylazar.telemetry.PanelsTelemetry;
 //import com.bylazar.telemetry.TelemetryManager;
+import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
+import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.pedropathing.follower.Follower;
 import com.pedropathing.math.Pose;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
@@ -25,12 +27,14 @@ public class FlyHoodTester extends BaseOpMode {
     public static double flypower = 1000;
     Pose hive = RobotConstants.redHive;
     //public TelemetryManager telemetry;
+    MultipleTelemetry telemetry;
     Follower follower;
     @Override
     public void init() {
         hood = new Hood(hardwareMap);
         fly = new Flywheel(hardwareMap);
         //telemetry = PanelsTelemetry.INSTANCE.getTelemetry();
+        telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
         follower = Constants.create(hardwareMap);
     }
 
@@ -39,7 +43,7 @@ public class FlyHoodTester extends BaseOpMode {
         //telemetry.update();
         hood.setPosition(position);
         fly.run(flypower);
-//        telemetry.addData("distance from non-flower red hive", hive.distance(follower.pose()));
+        telemetry.addData("distance from non-flower red hive", hive.distance(follower.pose()));
 //        telemetry.debug("hood angle", position);
 //        telemetry.debug("flywheel power", flypower);
     }
