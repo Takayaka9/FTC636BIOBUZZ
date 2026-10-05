@@ -21,29 +21,29 @@ import org.firstinspires.ftc.teamcode.util.RobotConstants;
 @TeleOp
 @Config
 public class FlyHoodTester extends BaseOpMode {
-    Hood hood;
+    //Hood hood;
     Flywheel fly;
     public static double position = 0;
     public static double flypower = 1000;
     Pose hive = RobotConstants.redHive;
     //public TelemetryManager telemetry;
     MultipleTelemetry telemetry;
-    Follower follower;
+    //Follower follower;
     @Override
     public void init() {
-        hood = new Hood(hardwareMap);
+        //hood = new Hood(hardwareMap);
         fly = new Flywheel(hardwareMap);
         //telemetry = PanelsTelemetry.INSTANCE.getTelemetry();
-        telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
-        follower = Constants.create(hardwareMap);
+        //telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
+        //follower = Constants.create(hardwareMap);
     }
 
     @Override
     public void loop() {
         //telemetry.update();
-        hood.setPosition(position);
+        //hood.setPosition(position);
         fly.run(flypower);
-        telemetry.addData("distance from non-flower red hive", hive.distance(follower.pose()));
+        //telemetry.addData("distance from non-flower red hive", hive.distance(follower.pose()));
 //        telemetry.debug("hood angle", position);
 //        telemetry.debug("flywheel power", flypower);
     }
