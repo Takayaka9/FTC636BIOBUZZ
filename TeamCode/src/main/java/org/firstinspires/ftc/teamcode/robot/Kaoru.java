@@ -1,9 +1,15 @@
 package org.firstinspires.ftc.teamcode.robot;
 
 //import com.bylazar.configurables.annotations.Configurable;
+import static com.pedropathing.ivy.commands.Commands.instant;
+import static com.pedropathing.ivy.commands.Commands.waitMs;
+import static com.pedropathing.ivy.groups.Groups.sequential;
+
 import com.acmerobotics.dashboard.config.Config;
 import com.pedropathing.follower.Follower;
+import com.pedropathing.ivy.Command;
 import com.pedropathing.math.Pose;
+import com.pedropathing.paths.Path;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.pedro.Constants;
@@ -12,6 +18,7 @@ import org.firstinspires.ftc.teamcode.robot.subsystems.Hood;
 import org.firstinspires.ftc.teamcode.robot.subsystems.Intake;
 import org.firstinspires.ftc.teamcode.robot.subsystems.Stopper;
 import org.firstinspires.ftc.teamcode.robot.subsystems.Turret;
+import org.firstinspires.ftc.teamcode.robot.subsystems.Wedge;
 import org.firstinspires.ftc.teamcode.robot.subsystems.cameras.Webcam;
 import org.firstinspires.ftc.teamcode.util.Alliance;
 import org.firstinspires.ftc.teamcode.util.RobotConstants;
@@ -27,6 +34,7 @@ public class Kaoru {
     public final Intake intake;
     public final Stopper stop;
     public final Turret turret;
+    public final Wedge wedge;
     public final Webcam webcam;
     public Pose hivePos;
     public Pose flowerHivePos; //flower side hive
@@ -40,6 +48,7 @@ public class Kaoru {
         hood = new Hood(h);
         intake = new Intake(h);
         stop = new Stopper(h);
+        wedge = new Wedge(h);
         webcam = new Webcam(h);
         setHives(a);
         hiveAim = hivePos; //default hive side is non-flower side (up at start of auto)
@@ -84,5 +93,15 @@ public class Kaoru {
         webcam.close();
         RobotConstants.turretPosTransfer = turret.getPosition();
         RobotConstants.poseTransfer = follower.pose();
+    }
+    public Command shoot(){
+        return sequential(
+                stop.open(),
+                waitMs(1000),
+                stop.close()
+        );
+    }
+    public Command follow(Path p){
+         return instant(() -> follower.follow(p));
     }
 }

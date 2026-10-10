@@ -28,13 +28,13 @@ public class Stopper {
     public CommandBuilder close(){
         return instant(() -> setPosition(close));
     }
-    public Command shootStopper(){
-        return sequential(
-                open(),
-                waitMs(1000),
-                close()
-
-        );
-
-    }
+//    public Command shootStopper(){
+//        return sequential(
+//                open(),
+//                waitMs(1000),
+//                close()
+//
+//        );
+//
+//    }
 }

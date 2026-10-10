@@ -1,6 +1,8 @@
-package org.firstinspires.ftc.teamcode.pedro.Autos;
+package org.firstinspires.ftc.teamcode.opmodes.auto;
 
 import com.pedropathing.follower.Follower;
+
+import org.firstinspires.ftc.teamcode.robot.Kaoru;
 import org.firstinspires.ftc.teamcode.robot.subsystems.Flywheel;
 import org.firstinspires.ftc.teamcode.robot.subsystems.Stopper;
 import org.firstinspires.ftc.teamcode.robot.subsystems.Intake;
@@ -14,6 +16,8 @@ import com.pedropathing.api.PoseFactory;
 import com.pedropathing.math.Pose;
 
 import org.firstinspires.ftc.teamcode.pedro.Constants;
+import org.firstinspires.ftc.teamcode.util.Alliance;
+
 import static com.pedropathing.api.Paths.*;
 
 import com.pedropathing.paths.Path;
@@ -26,16 +30,10 @@ import static com.pedropathing.ivy.pedro.PedroCommands.follow;
 
 @Autonomous
 public class scrimmsAuto0 extends OpMode{
-    private Follower follower;
-    public Flywheel flywheel;
-    public Stopper stopper;
-    public Wedge wedge;
-    public Intake intake;
-    public Hood hood;
-
-    public Turret turret;
-
-
+    public scrimmsAuto0(Alliance a){
+        r = new Kaoru(hardwareMap, a);
+    }
+    Kaoru r;
     private final PoseFactory p = PoseFactory.degrees();
     private final Pose startPose = p.of(56, 8, 90);
     private final Pose flower1 = p.of(9.009, 47.087, 180);
@@ -73,45 +71,38 @@ public class scrimmsAuto0 extends OpMode{
     private Command autoRoutine() {
         return sequential(
                 // Add mechanism commands here.
-                flywheel.runFlywheel(),
-                stopper.shootStopper(),
-                intake.in(),
-                wedge.down(),
-                follow(follower, flower1pickUp()),
+                r.shoot(),
+                r.intake.in(),
+                r.wedge.down(),
+                r.follow(flower1pickUp()),
                 waitMs(1000),
-                follow(follower, Shoot1()),
-                stopper.shootStopper(),
-                follow(follower, fLower2PickUp()),
+                r.follow(Shoot1()),
+                r.shoot(),
+                r.follow(fLower2PickUp()),
                 waitMs(1000),
-                follow(follower, Shoot2()),
-                stopper.shootStopper(),
-                wedge.up(),
-                intake.stop(),
-                follow(follower, Park())
-
+                r.follow(Shoot2()),
+                r.shoot(),
+                r.wedge.up(),
+                r.intake.stop(),
+                r.follow(Park())
         );
     }
 
     public void init() {
         Scheduler.reset();
-        follower = Constants.create(hardwareMap);
-        follower.setPose(startPose);
-        follower.update();
-
+        r.follower.setPose(startPose);
+        r.follower.update();
     }
 
     @Override
     public void start() {
         schedule(autoRoutine());
-
-
     }
 
     @Override
     public void loop() {
-        
-        follower.update();
+        r.periodic();
+        r.follower.update();
         Scheduler.execute();
-
     }
 }

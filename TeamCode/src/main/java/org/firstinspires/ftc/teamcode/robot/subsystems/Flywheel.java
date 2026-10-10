@@ -61,11 +61,9 @@ public class Flywheel {
         fly.setPower(0);
     }
 
-    public Command runFlywheel(){
-        return instant(() -> run(getTarget()));
-
-
-    }
+//    public Command runFlywheel(){
+//        return instant(() -> run(getTarget()));
+//    }
     public boolean targetReached(double target){
         return Math.abs(target - fly.getVelocity()) < 110;
     }
