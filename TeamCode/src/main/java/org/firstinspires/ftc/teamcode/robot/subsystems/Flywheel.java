@@ -1,6 +1,10 @@
 package org.firstinspires.ftc.teamcode.robot.subsystems;
 
+import static com.pedropathing.ivy.commands.Commands.instant;
+import static com.pedropathing.ivy.groups.Groups.sequential;
+
 import com.acmerobotics.dashboard.config.Config;
+import com.pedropathing.ivy.Command;
 import com.pedropathing.math.Pose;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
@@ -55,6 +59,12 @@ public class Flywheel {
     }
     public void stop(){
         fly.setPower(0);
+    }
+
+    public Command runFlywheel(){
+        return instant(() -> run(getTarget()));
+
+
     }
     public boolean targetReached(double target){
         return Math.abs(target - fly.getVelocity()) < 110;

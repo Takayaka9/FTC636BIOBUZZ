@@ -1,9 +1,12 @@
 package org.firstinspires.ftc.teamcode.robot.subsystems;
 
 import static com.pedropathing.ivy.commands.Commands.instant;
+import static com.pedropathing.ivy.commands.Commands.waitMs;
+import static com.pedropathing.ivy.groups.Groups.sequential;
 
 //import com.bylazar.configurables.annotations.Configurable;
 import com.acmerobotics.dashboard.config.Config;
+import com.pedropathing.ivy.Command;
 import com.pedropathing.ivy.CommandBuilder;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -24,5 +27,14 @@ public class Stopper {
     }
     public CommandBuilder close(){
         return instant(() -> setPosition(close));
+    }
+    public Command shootStopper(){
+        return sequential(
+                open(),
+                waitMs(1000),
+                close()
+
+        );
+
     }
 }
