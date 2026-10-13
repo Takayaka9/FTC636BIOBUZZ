@@ -58,7 +58,7 @@ public class scrimmsAuto0 extends OpMode{
 
     public void init() {
         Scheduler.reset();
-        r.follower.setPose(ap.startPose());
+        r.follower.setPose(ap.startNonFlower);
         r.follower.update();
     }
 

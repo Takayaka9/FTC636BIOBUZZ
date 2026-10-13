@@ -8,8 +8,12 @@ import com.pedropathing.math.Pose;
 import com.pedropathing.paths.Path;
 
 public class AutoPaths {
+    public AutoPaths(Alliance a){
+        if(a==Alliance.BLUE){
+            red = red.mirrorAroundPoint(72, 72);
+        }
+    }
     PoseFactory red = PoseFactory.degrees();
-    PoseFactory blue = red.mirrorAroundPoint(72, 72);
     public final Pose startNonFlower = red.of(56, 8.8, 180);
     public final Pose gardenStart = red.of(21.1, 8.8, 180);
     public final Pose flower1 = red.of(9.009, 47.087, 180);
