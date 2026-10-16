@@ -1,6 +1,8 @@
 package org.firstinspires.ftc.teamcode.opmodes.tele;
 
 import com.acmerobotics.dashboard.config.Config;
+import com.pedropathing.drivetrain.DrivePowers;
+import com.pedropathing.follower.ManualDrive;
 
 import org.firstinspires.ftc.teamcode.opmodes.BaseOpMode;
 import org.firstinspires.ftc.teamcode.robot.Robot;
@@ -25,10 +27,13 @@ public class Tele extends BaseOpMode {
         super.loop();
         robot.periodic();
 
-        double forward = -gamepad1.left_stick_y;
-        double lateral = gamepad1.left_stick_x;
-        double turn = gamepad1.right_stick_x;
-        robot.follower.manual(forward, lateral, turn);
+        DrivePowers powers = ManualDrive.fieldCentric(
+                -gamepad1.left_stick_y,
+                gamepad1.left_stick_x,
+                gamepad1.right_stick_x,
+                robot.follower.pose().heading()
+        );
+        robot.follower.manual(powers);
 
         if(automatic){
             robot.automatic();
