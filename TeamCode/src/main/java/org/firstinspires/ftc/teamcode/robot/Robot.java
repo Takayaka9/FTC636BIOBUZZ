@@ -10,6 +10,7 @@ import com.pedropathing.follower.Follower;
 import com.pedropathing.ivy.Command;
 import com.pedropathing.math.Pose;
 import com.pedropathing.paths.Path;
+import static com.pedropathing.ivy.pedro.PedroCommands.follow;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.pedro.Constants;
@@ -25,7 +26,7 @@ import org.firstinspires.ftc.teamcode.util.RobotConstants;
 import org.firstinspires.ftc.teamcode.util.Sides;
 
 @Config
-public class Kaoru {
+public class Robot {
     //our robot class; name to be changed
     //add all functions that require multiple subsystems that are used in both auto and tele here
     public Follower follower;
@@ -41,7 +42,7 @@ public class Kaoru {
     public Pose hiveAim; //the alliance AND side we're aiming at (naming up for debate)
     Sides side;
     //initializing all of our subsystems
-    public Kaoru(HardwareMap h, Alliance a){
+    public Robot(HardwareMap h, Alliance a){
         follower = Constants.create(h);
         fly = new Flywheel(h);
         turret = new Turret(h);
@@ -94,14 +95,15 @@ public class Kaoru {
         RobotConstants.turretPosTransfer = turret.getPosition();
         RobotConstants.poseTransfer = follower.pose();
     }
+    public static int shootWait = 1000;
     public Command shoot(){
         return sequential(
                 stop.open(),
-                waitMs(1000),
+                waitMs(shootWait),
                 stop.close()
         );
     }
-    public Command follow(Path p){
-         return instant(() -> follower.follow(p));
+    public Command followPath(Path p){
+         return follow(follower, p);
     }
 }

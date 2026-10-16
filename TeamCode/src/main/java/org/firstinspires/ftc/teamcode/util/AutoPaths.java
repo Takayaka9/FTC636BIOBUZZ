@@ -11,10 +11,11 @@ public class AutoPaths {
     public AutoPaths(Alliance a){
         if(a==Alliance.BLUE){
             red = red.mirrorAroundPoint(72, 72);
+            startNonFlower.invert();
         }
     }
     PoseFactory red = PoseFactory.degrees();
-    public final Pose startNonFlower = red.of(56, 8.8, 180);
+    public final Pose startNonFlower = new Pose (56, 8.8, 180);
     public final Pose gardenStart = red.of(21.1, 8.8, 180);
     public final Pose flower1 = red.of(9.009, 47.087, 180);
     public final Pose shoot2 = red.of(47.08022388059702, 122.8555270522388, 90);
