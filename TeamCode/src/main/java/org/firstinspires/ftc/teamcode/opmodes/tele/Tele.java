@@ -6,7 +6,6 @@ import com.pedropathing.follower.ManualDrive;
 
 import org.firstinspires.ftc.teamcode.opmodes.BaseOpMode;
 import org.firstinspires.ftc.teamcode.robot.Robot;
-import org.firstinspires.ftc.teamcode.robot.subsystems.Wedge;
 import org.firstinspires.ftc.teamcode.util.Alliance;
 import org.firstinspires.ftc.teamcode.util.RobotConstants;
 @Config
