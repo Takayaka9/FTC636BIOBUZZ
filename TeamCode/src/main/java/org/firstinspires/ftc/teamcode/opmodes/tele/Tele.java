@@ -6,12 +6,15 @@ import com.pedropathing.follower.ManualDrive;
 
 import org.firstinspires.ftc.teamcode.opmodes.BaseOpMode;
 import org.firstinspires.ftc.teamcode.robot.Robot;
+import org.firstinspires.ftc.teamcode.robot.subsystems.Wedge;
 import org.firstinspires.ftc.teamcode.util.Alliance;
 import org.firstinspires.ftc.teamcode.util.RobotConstants;
 @Config
 public class Tele extends BaseOpMode {
     Robot robot;
     boolean automatic=true;
+
+    boolean wedgeDown=true;
     public Tele(Alliance a){
         robot = new Robot(hardwareMap, a);
     }
@@ -60,6 +63,15 @@ public class Tele extends BaseOpMode {
         }
         else{
             robot.intake.stop();
+        }
+
+        if(gamepad1.yWasPressed()&&wedgeDown){
+            robot.wedge.down();
+            wedgeDown = false;
+        }
+        if(gamepad1.yWasPressed()&&!wedgeDown){
+            robot.wedge.up();
+            wedgeDown = true;
         }
 
         if(gamepad1.b){
