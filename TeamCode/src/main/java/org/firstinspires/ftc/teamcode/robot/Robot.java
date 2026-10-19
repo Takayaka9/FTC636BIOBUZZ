@@ -99,7 +99,9 @@ public class Robot {
     public Command shoot(){
         return sequential(
                 stop.open(),
+                intake.in(),
                 waitMs(shootWait),
+                intake.stop(),
                 stop.close()
         );
     }

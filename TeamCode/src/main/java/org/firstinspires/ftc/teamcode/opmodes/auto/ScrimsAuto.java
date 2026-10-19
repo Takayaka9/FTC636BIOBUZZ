@@ -9,41 +9,47 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import org.firstinspires.ftc.teamcode.util.Alliance;
 import org.firstinspires.ftc.teamcode.util.AutoPaths;
 
-import com.pedropathing.ivy.Scheduler;
-
 import static com.pedropathing.ivy.Scheduler.schedule;
 import static com.pedropathing.ivy.commands.Commands.waitMs;
+import static com.pedropathing.ivy.groups.Groups.parallel;
 import static com.pedropathing.ivy.groups.Groups.sequential;
 
 @Autonomous
-public class scrimmsAuto0 extends OpMode{
-    public scrimmsAuto0(Alliance a){
-        r = new Robot(hardwareMap, a);
-    }
+public class ScrimsAuto extends OpMode{
     Robot r;
     AutoPaths ap;
+    public ScrimsAuto(Alliance a){
+        r = new Robot(hardwareMap, a);
+        ap = new AutoPaths(a);
+    }
     private Command autoRoutine() {
         return sequential(
                 // Add mechanism commands here.
                 r.shoot(),
-                r.intake.in(),
-                r.wedge.down(),
-                r.followPath(ap.flower1PickUp()),
+                parallel(
+                        r.intake.in(),
+                        r.wedge.down(),
+                        r.followPath(ap.flower1PickUp())
+                ),
                 waitMs(1000),
+                r.intake.stop(),
                 r.followPath(ap.shoot1()),
                 r.shoot(),
-                r.followPath(ap.flower2PickUp()),
+                parallel(
+                        r.intake.in(),
+                        r.wedge.down(),
+                        r.followPath(ap.flower2PickUp())
+                ),
                 waitMs(1000),
+                r.intake.stop(),
                 r.followPath(ap.shoot2()),
                 r.shoot(),
                 r.wedge.up(),
-                r.intake.stop(),
                 r.followPath(ap.park())
         );
     }
 
     public void init() {
-        Scheduler.reset();
         r.follower.setPose(ap.startNonFlower);
         r.follower.update();
     }
@@ -57,6 +63,10 @@ public class scrimmsAuto0 extends OpMode{
     public void loop() {
         r.periodic();
         r.follower.update();
-        Scheduler.execute();
+    }
+
+    @Override
+    public void stop(){
+        r.endAuto();
     }
 }
