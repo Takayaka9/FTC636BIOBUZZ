@@ -11,9 +11,8 @@ import org.firstinspires.ftc.teamcode.util.RobotConstants;
 @Config
 public class Tele extends BaseOpMode {
     Robot robot;
-    boolean automatic=true;
-
-    boolean wedgeDown=true;
+    boolean automatic = true;
+    boolean wedgeDown = true;
     public Tele(Alliance a){
         robot = new Robot(hardwareMap, a);
     }
@@ -22,6 +21,7 @@ public class Tele extends BaseOpMode {
     public void init() {
         super.init();
         robot.turret.setOffset(RobotConstants.turretPosTransfer);
+        robot.follower.setPose(RobotConstants.poseTransfer);
     }
 
     @Override
@@ -29,13 +29,11 @@ public class Tele extends BaseOpMode {
         super.loop();
         robot.periodic();
 
-        DrivePowers powers = ManualDrive.fieldCentric(
-                -gamepad1.left_stick_y,
-                gamepad1.left_stick_x,
-                gamepad1.right_stick_x,
-                robot.follower.pose().heading()
-        );
-        robot.follower.manual(powers);
+        double forward = -gamepad1.left_stick_y;
+        double lateral = gamepad1.left_stick_x;
+        double turn = gamepad1.right_stick_x;
+
+        robot.follower.manual(forward, lateral, turn);
 
         if(automatic){
             robot.automatic();
@@ -64,11 +62,11 @@ public class Tele extends BaseOpMode {
             robot.intake.stop();
         }
 
-        if(gamepad1.yWasPressed()&&wedgeDown){
+        if(gamepad1.yWasPressed() && wedgeDown){
             robot.wedge.down();
             wedgeDown = false;
         }
-        if(gamepad1.yWasPressed()&&!wedgeDown){
+        if(gamepad1.yWasPressed() && !wedgeDown){
             robot.wedge.up();
             wedgeDown = true;
         }
