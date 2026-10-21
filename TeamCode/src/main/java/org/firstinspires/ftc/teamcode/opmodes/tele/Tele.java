@@ -11,15 +11,17 @@ import org.firstinspires.ftc.teamcode.util.RobotConstants;
 @Config
 public class Tele extends BaseOpMode {
     Robot robot;
+    Alliance a;
     boolean automatic = true;
     boolean wedgeDown = true;
     public Tele(Alliance a){
-        robot = new Robot(hardwareMap, a);
+        this.a = a;
     }
 
     @Override
     public void init() {
         super.init();
+        robot = new Robot(hardwareMap, a);
         robot.turret.setOffset(RobotConstants.turretPosTransfer);
         robot.follower.setPose(RobotConstants.poseTransfer);
     }

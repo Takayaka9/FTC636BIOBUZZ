@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.opmodes.auto;
 
+import org.firstinspires.ftc.teamcode.opmodes.BaseOpMode;
 import org.firstinspires.ftc.teamcode.robot.Robot;
 
 import com.pedropathing.ivy.Command;
@@ -15,12 +16,13 @@ import static com.pedropathing.ivy.groups.Groups.parallel;
 import static com.pedropathing.ivy.groups.Groups.sequential;
 
 @Autonomous
-public class ScrimsAuto extends OpMode{
+public class ScrimsAuto extends BaseOpMode {
     Robot r;
     AutoPaths ap;
+    Alliance a;
     public ScrimsAuto(Alliance a){
-        r = new Robot(hardwareMap, a);
         ap = new AutoPaths(a);
+        this.a = a;
     }
     private Command autoRoutine() {
         return sequential(
@@ -50,6 +52,7 @@ public class ScrimsAuto extends OpMode{
     }
 
     public void init() {
+        r = new Robot(hardwareMap, a);
         r.follower.setPose(ap.startNonFlower);
         r.follower.update();
     }
