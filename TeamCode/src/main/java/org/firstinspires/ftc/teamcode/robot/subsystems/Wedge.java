@@ -11,15 +11,19 @@ import com.qualcomm.robotcore.hardware.Servo;
 @Configurable
 public class Wedge {
     //to be renamed, ugly name
-    private Servo pivot;
+    private Servo pivotL;
+    private Servo pivotR;
     public static double up = 1;
     public static double down = 0.5;
     public Wedge(HardwareMap h){
-        pivot = h.get(Servo.class, "wedge");
+        pivotL = h.get(Servo.class, "wedgeL");
+        pivotR = h.get(Servo.class, "wedgeR");
     }
     public void setPosition(double position){
-        pivot.setPosition(position);
+        pivotL.setPosition(position);
+        pivotR.setPosition(position);
     }
+    //public Wedge(HardwareMap h){ pivotR = h.get(Servo.class, "wedgeR")};
     public CommandBuilder up(){
         return instant(() -> setPosition(up));
     }
