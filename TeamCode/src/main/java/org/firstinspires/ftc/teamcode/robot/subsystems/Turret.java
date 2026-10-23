@@ -5,6 +5,7 @@ import static com.pedropathing.utils.Angle.normalizeSigned;
 
 //import com.bylazar.configurables.annotations.Configurable;
 import com.acmerobotics.dashboard.config.Config;
+import com.bylazar.configurables.annotations.Configurable;
 import com.pedropathing.follower.Follower;
 import com.pedropathing.ivy.CommandBuilder;
 import com.pedropathing.math.Pose;
@@ -15,7 +16,7 @@ import com.seattlesolvers.solverslib.util.InterpLUT;
 
 import org.firstinspires.ftc.teamcode.util.RobotConstants;
 
-@Config
+@Configurable
 public class Turret {
     private final DcMotorEx t;
     private double encoderPositionOffsetTicks;

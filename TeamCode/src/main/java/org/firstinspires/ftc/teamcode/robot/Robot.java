@@ -26,8 +26,7 @@ import org.firstinspires.ftc.teamcode.util.Alliance;
 import org.firstinspires.ftc.teamcode.util.RobotConstants;
 import org.firstinspires.ftc.teamcode.util.Sides;
 
-@Config
-//@Configurable
+@Configurable
 public class Robot {
     //our robot class; name to be changed
     //add all functions that require multiple subsystems that are used in both auto and tele here

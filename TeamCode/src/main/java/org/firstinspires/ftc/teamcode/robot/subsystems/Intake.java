@@ -4,10 +4,11 @@ import static com.pedropathing.ivy.commands.Commands.instant;
 
 //import com.bylazar.configurables.annotations.Configurable;
 import com.acmerobotics.dashboard.config.Config;
+import com.bylazar.configurables.annotations.Configurable;
 import com.pedropathing.ivy.CommandBuilder;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-@Config
+@Configurable
 public class Intake {
     private final DcMotorEx intake;
     public static double in = 1;

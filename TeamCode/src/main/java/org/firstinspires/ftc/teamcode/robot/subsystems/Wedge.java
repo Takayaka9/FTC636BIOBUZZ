@@ -4,10 +4,11 @@ import static com.pedropathing.ivy.commands.Commands.instant;
 
 //import com.bylazar.configurables.annotations.Configurable;
 import com.acmerobotics.dashboard.config.Config;
+import com.bylazar.configurables.annotations.Configurable;
 import com.pedropathing.ivy.CommandBuilder;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
-@Config
+@Configurable
 public class Wedge {
     //to be renamed, ugly name
     private Servo pivot;
