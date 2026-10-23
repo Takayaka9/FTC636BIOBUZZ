@@ -42,5 +42,22 @@ public class HalfTele extends BaseOpMode {
         backLeft.setPower(backLeftPower);
         frontRight.setPower(frontRightPower);
         backRight.setPower(backRightPower);
+
+        if(gamepad1.right_bumper){
+            i.in();
+        }
+        else if(gamepad1.left_bumper){
+            i.out();
+        }
+        else{
+            i.stop();
+        }
+
+        if(gamepad1.aWasPressed()){
+            w.down();
+        }
+        else if(gamepad1.bWasPressed()){
+            w.up();
+        }
     }
 }

@@ -6,6 +6,7 @@ import static com.pedropathing.ivy.commands.Commands.instant;
 import com.acmerobotics.dashboard.config.Config;
 import com.bylazar.configurables.annotations.Configurable;
 import com.pedropathing.ivy.CommandBuilder;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -23,6 +24,8 @@ public class Intake {
         intake = hardwareMap.get(DcMotorEx.class, "i");
         intake2 = hardwareMap.get(DcMotorEx.class, "i2");
         intake2.setDirection(DcMotorEx.Direction.REVERSE);
+        intake.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        intake2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
     }
     public CommandBuilder in(){
         return instant(() -> setMotorPower(in));
