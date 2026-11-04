@@ -77,10 +77,10 @@ public class Flywheel {
     //public static double Kf = 0.00036;
     //really ugly interpLUT system
     static double d1 = 36; static double r1 = 850;//tuned
-    static double d2 = 53.6; static double r2 = 1000;//tuned
-    static double d3 = 73.5; static double r3 = 1075;//tuned
-    static double d4 = 100; static double r4 = 1125;//tuned
-    static double d5 = 135.5; static double r5 = 1350;//tuned
-    static double d6 = 150; static double r6 = 1360;//tuned
+    static double d2 = 53.6; static double r2 = 1000;
+    static double d3 = 73.5; static double r3 = 1075;
+    static double d4 = 100; static double r4 = 1125;
+    static double d5 = 135.5; static double r5 = 1350;
+    static double d6 = 150; static double r6 = 1360;
     public static double brake = -0.3;
 }
