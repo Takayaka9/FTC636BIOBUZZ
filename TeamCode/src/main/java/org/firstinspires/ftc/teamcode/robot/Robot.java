@@ -12,6 +12,8 @@ import com.pedropathing.ivy.Command;
 import com.pedropathing.math.Pose;
 import com.pedropathing.paths.Path;
 import static com.pedropathing.ivy.pedro.PedroCommands.follow;
+import static org.firstinspires.ftc.teamcode.util.RobotConstants.reloc;
+
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.pedro.Constants;
@@ -37,7 +39,7 @@ public class Robot {
     public final Stopper stop;
     public final Turret turret;
     public final Wedge wedge;
-    public final Webcam webcam;
+    //public final Webcam webcam;
     public Pose hivePos;
     public Pose flowerHivePos; //flower side hive
     public Pose hiveAim; //the alliance AND side we're aiming at (naming up for debate)
@@ -51,7 +53,7 @@ public class Robot {
         intake = new Intake(h);
         stop = new Stopper(h);
         wedge = new Wedge(h);
-        webcam = new Webcam(h);
+        //webcam = new Webcam(h);
         setHives(a);
         hiveAim = hivePos; //default hive side is non-flower side (up at start of auto)
         side = Sides.NONFLOWER; //default hive side is non-flower side (up at start of auto)
@@ -92,7 +94,7 @@ public class Robot {
         }
     }
     public void endAuto(){
-        webcam.close();
+        //webcam.close();
         RobotConstants.turretPosTransfer = turret.getPosition();
         RobotConstants.poseTransfer = follower.pose();
     }
@@ -108,5 +110,8 @@ public class Robot {
     }
     public Command followPath(Path p){
          return follow(follower, p);
+    }
+    public void relocalize(){
+        follower.setPose(reloc);
     }
 }

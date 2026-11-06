@@ -10,7 +10,7 @@ import com.pedropathing.paths.Path;
 
 @Configurable
 public class AutoPaths {
-    public static double startNonFlowerX = 56; public static double startNonFlowerY = 8; public static double startNonFlowerAngle = Math.toRadians(90);
+    public static double startNonFlowerX = 54; public static double startNonFlowerY = 8.7; public static double startNonFlowerAngle = Math.toRadians(90);
     public static double flower1PickupX = 15.4495; public static double flower1PickupY = 46.9089; public static double flower1PickupAngle = Math.toRadians(180);
     public static double flower1PickupControl1X = 46.136; public static double flower1PickupControl1Y = 46.5416; public static double flower1PickupControl1Angle = Math.toRadians(0);
     public static double flowerInsertX = 6.5743; public static double flowerInsertY = 46.7316; public static double flowerInsertAngle = Math.toRadians(180);

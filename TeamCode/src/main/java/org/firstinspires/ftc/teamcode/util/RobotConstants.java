@@ -9,4 +9,6 @@ public class RobotConstants {
     public static final Pose redHive = new Pose(58, 60);
     public static final Pose blueHiveFlower = new Pose(84, 60);
     public static final Pose blueHive = new Pose(84, 82);
+    public static Pose reloc = new Pose(7.3, 110, Math.toRadians(90));
+
 }
