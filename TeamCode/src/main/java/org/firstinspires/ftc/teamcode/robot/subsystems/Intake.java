@@ -3,29 +3,27 @@ package org.firstinspires.ftc.teamcode.robot.subsystems;
 import static com.pedropathing.ivy.commands.Commands.instant;
 
 //import com.bylazar.configurables.annotations.Configurable;
-import com.acmerobotics.dashboard.config.Config;
 import com.bylazar.configurables.annotations.Configurable;
 import com.pedropathing.ivy.CommandBuilder;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 @Configurable
 public class Intake {
-    private final DcMotorEx intake;
-    private final DcMotorEx intake2;
+    private final DcMotorEx intaker;
+    private final DcMotorEx intakel;
     public static double in = 1;
     public static double out = -1;
     public void setMotorPower(double power){
-        intake.setPower(power);
-        intake2.setPower(power);
+        intaker.setPower(power);
+        intakel.setPower(power);
     }
     public Intake(HardwareMap hardwareMap){
-        intake = hardwareMap.get(DcMotorEx.class, "i");
-        intake2 = hardwareMap.get(DcMotorEx.class, "i2");
-        intake2.setDirection(DcMotorEx.Direction.REVERSE);
-        intake.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        intake2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        intaker = hardwareMap.get(DcMotorEx.class, "ir");
+        intakel = hardwareMap.get(DcMotorEx.class, "il");
+        intakel.setDirection(DcMotorEx.Direction.REVERSE);
+        intaker.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        intakel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
     }
     public CommandBuilder in(){
         return instant(() -> setMotorPower(in));
