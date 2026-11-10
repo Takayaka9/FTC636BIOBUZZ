@@ -20,7 +20,7 @@ public class Wedge {
     }
     public void setPosition(double position){
         pivotL.setPosition(position);
-        pivotR.setPosition(position);
+        pivotR.setPosition(1-position);
     }
     //public Wedge(HardwareMap h){ pivotR = h.get(Servo.class, "wedgeR")};
     public CommandBuilder up(){

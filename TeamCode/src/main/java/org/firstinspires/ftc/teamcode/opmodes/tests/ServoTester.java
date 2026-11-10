@@ -31,6 +31,6 @@ public class ServoTester extends BaseOpMode {
 
     @Override
     public void loop() {
-        stopper.setPosition(position);
+        wedge.setPosition(position);
     }
 }
