@@ -4,7 +4,6 @@ package org.firstinspires.ftc.teamcode.opmodes.tests;
 //import com.bylazar.panels.Panels;
 //import com.bylazar.telemetry.PanelsTelemetry;
 //import com.bylazar.telemetry.TelemetryManager;
-import com.acmerobotics.dashboard.config.Config;
 import com.bylazar.configurables.annotations.Configurable;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -17,8 +16,6 @@ import org.firstinspires.ftc.teamcode.robot.subsystems.Wedge;
 @TeleOp
 @Configurable
 public class ServoTester extends BaseOpMode {
-    //idrk if this will work but oh well
-    //TelemetryManager telemetry;
     Stopper stopper;
     Hood hood;
     Wedge wedge;
@@ -34,21 +31,6 @@ public class ServoTester extends BaseOpMode {
 
     @Override
     public void loop() {
-//        telemetry.update();
-//        telemetry.debug("mode", mode);
-//        telemetry.debug("position", position);
-        telemetry.addLine("options: stopper, hood, wedge");
-        if(mode.equals("stopper")){
-            stopper.setPosition(position);
-        }
-        else if(mode.equals("hood")){
-            hood.setPosition(position);
-        }
-        else if(mode.equals("wedge")){
-            wedge.setPosition(position);
-        }
-        else{
-            telemetry.addLine("mode not set");
-        }
+        stopper.setPosition(position);
     }
 }

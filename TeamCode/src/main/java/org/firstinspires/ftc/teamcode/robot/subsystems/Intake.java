@@ -21,7 +21,7 @@ public class Intake {
     public Intake(HardwareMap hardwareMap){
         intaker = hardwareMap.get(DcMotorEx.class, "ir");
         intakel = hardwareMap.get(DcMotorEx.class, "il");
-        intakel.setDirection(DcMotorEx.Direction.REVERSE);
+        intaker.setDirection(DcMotorEx.Direction.REVERSE);
         intaker.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         intakel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
     }

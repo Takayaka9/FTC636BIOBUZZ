@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode.opmodes.tele;
 
-import com.acmerobotics.dashboard.config.Config;
 import com.bylazar.configurables.annotations.Configurable;
 import com.pedropathing.drivetrain.DrivePowers;
 import com.pedropathing.follower.ManualDrive;

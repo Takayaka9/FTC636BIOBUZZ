@@ -3,12 +3,12 @@ package org.firstinspires.ftc.teamcode.robot.subsystems;
 import static com.pedropathing.ivy.commands.Commands.instant;
 import static com.pedropathing.ivy.groups.Groups.sequential;
 
-import com.acmerobotics.dashboard.config.Config;
 import com.bylazar.configurables.annotations.Configurable;
 import com.pedropathing.ivy.Command;
 import com.pedropathing.math.Pose;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.seattlesolvers.solverslib.util.InterpLUT;
 @Configurable
@@ -61,6 +61,9 @@ public class Flywheel {
     public void stop(){
         fly.setPower(0);
     }
+    public double telemetry(){
+        return fly.getVelocity();
+    }
 
 //    public Command runFlywheel(){
 //        return instant(() -> run(getTarget()));
@@ -68,10 +71,10 @@ public class Flywheel {
     public boolean targetReached(double target){
         return Math.abs(target - fly.getVelocity()) < 110;
     }
-    public static double Kp = 0.8;
+    public static double Kp = 0.003;
     public static double Kd = 0;
-    public static double Kv = 0.00049;
-    public static double Ks = 0.17;
+    public static double Kv = 0.00029;
+    public static double Ks = 0.2;
     public static double minActiveTps = 900;
     public static double maxError = 3;
     //public static double Kf = 0.00036;

@@ -5,7 +5,6 @@ import static com.pedropathing.ivy.commands.Commands.waitMs;
 import static com.pedropathing.ivy.groups.Groups.sequential;
 
 //import com.bylazar.configurables.annotations.Configurable;
-import com.acmerobotics.dashboard.config.Config;
 import com.bylazar.configurables.annotations.Configurable;
 import com.pedropathing.ivy.Command;
 import com.pedropathing.ivy.CommandBuilder;
@@ -15,8 +14,8 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class Stopper {
     private final Servo s;
     //positions
-    public static double open = 0.5;
-    public static double close = 0;
+    public static double open = 0.57;
+    public static double close = 0.4;
     public Stopper(HardwareMap h){
         s = h.get(Servo.class, "stopper");
     }
