@@ -68,8 +68,8 @@ public class Robot {
     }
     public void manual(){
         turret.turnTurret(0);
-        //hood.setPosition(0);
-        //fly.setTarget(1000);
+        hood.setPosition(0.9);
+        fly.setTarget(1350);
         //find neutral values for both!
     }
     private void setHives(Alliance a){

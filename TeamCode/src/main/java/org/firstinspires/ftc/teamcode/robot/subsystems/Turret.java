@@ -29,7 +29,7 @@ public class Turret {
         create();
     }
     private static final double TICKS_PER_REV = 145.1; //I think this is still right, revolutions per tick
-    private static final double TURRET_GEAR_RATIO = 5.1; //have to change later
+    private static final double TURRET_GEAR_RATIO = ((double) 97 /30); //have to change later
     private static final double TICKS_PER_RADIAN = (TICKS_PER_REV * TURRET_GEAR_RATIO) / (Math.PI * 2);
     private static final double ENCODER_RESET_THRESHOLD_TICKS = 5;
     public static double multiplier = 0;
@@ -40,12 +40,6 @@ public class Turret {
         // don't send the turret to the opposite hard stop.
         double turretAngle = normalizeSigned(hiveAngle - robotHeading) + manualAngleOffsetRadians + f.tangentialVelocity()*multiplier;
         //will change below based on turret limits
-        if(turretAngle >= Math.PI/2){
-            turretAngle = Math.PI/2;
-        }
-        if(turretAngle <= -Math.PI/2){
-            turretAngle = -Math.PI/2;
-        }
         double targetPos = turretAngle * TICKS_PER_RADIAN;
         turnTurret(targetPos);
     }

@@ -14,10 +14,6 @@ public class Intake {
     private final DcMotorEx intakel;
     public static double in = 1;
     public static double out = -1;
-    public void setMotorPower(double power){
-        intaker.setPower(power);
-        intakel.setPower(power);
-    }
     public Intake(HardwareMap hardwareMap){
         intaker = hardwareMap.get(DcMotorEx.class, "ir");
         intakel = hardwareMap.get(DcMotorEx.class, "il");
@@ -25,6 +21,25 @@ public class Intake {
         intaker.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         intakel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
     }
+    public void setMotorPower(double power){
+        intaker.setPower(power);
+        intakel.setPower(power);
+    }
+    //could be nice to use pid for intake too
+    private void setMotorPowerPID(double target){
+        double vel = intaker.getVelocity();
+        double error = target - vel;
+        double feedForward = Ks + (target * Kv);
+        double output = error* Kp + feedForward;
+
+        intaker.setPower(output);
+        intakel.setPower(output);
+    }
+    //TODO: to be tuned
+    public static double Kp = 0;
+    public static double Kd = 0;
+    public static double Kv = 0;
+    public static double Ks = 0;
     public CommandBuilder in(){
         return instant(() -> setMotorPower(in));
     }

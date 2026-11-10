@@ -51,29 +51,29 @@ public class Tele extends BaseOpMode {
         }
 
         if(gamepad1.leftBumperWasPressed()){
-            robot.shoot();
+            robot.shoot().schedule();
         }
 
         if(gamepad1.right_bumper){
-            robot.intake.in();
+            robot.intake.in().schedule();
         }
         else if(gamepad1.left_trigger > 0.3){
-            robot.intake.out();
+            robot.intake.out().schedule();
         }
         else{
-            robot.intake.stop();
+            robot.intake.stop().schedule();
         }
 
         if(gamepad1.yWasPressed() && wedgeDown){
-            robot.wedge.down();
+            robot.wedge.down().schedule();
             wedgeDown = false;
         }
         if(gamepad1.yWasPressed() && !wedgeDown){
-            robot.wedge.up();
+            robot.wedge.up().schedule();
             wedgeDown = true;
         }
 
-        if(gamepad1.b){
+        if(gamepad1.bWasPressed()){
             robot.switchSide();
         }
     }
