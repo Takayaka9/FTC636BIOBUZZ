@@ -39,38 +39,35 @@ public class Tele extends BaseOpMode {
 
         if(automatic){
             robot.automatic();
-            if(gamepad1.aWasPressed()){
-                automatic=false;
-            }
-        }
-        else{
+        } else{
             robot.manual();
-            if(gamepad1.aWasPressed()){
-                automatic=true;
+        }
+
+        if(gamepad1.aWasPressed()){
+            automatic = !automatic;
+        }
+
+        if (gamepad1.left_bumper) {
+            robot.stop.open().schedule();
+            robot.intake.in().schedule();
+        } else {
+            robot.stop.close().schedule();
+            if (gamepad1.right_bumper) {
+                robot.intake.in().schedule();
+            } else if (gamepad1.left_trigger > 0.3) {
+                robot.intake.out().schedule();
+            } else {
+                robot.intake.stop().schedule();
             }
         }
 
-        if(gamepad1.leftBumperWasPressed()){
-            robot.shoot().schedule();
-        }
-
-        if(gamepad1.right_bumper){
-            robot.intake.in().schedule();
-        }
-        else if(gamepad1.left_trigger > 0.3){
-            robot.intake.out().schedule();
-        }
-        else{
-            robot.intake.stop().schedule();
-        }
-
-        if(gamepad1.yWasPressed() && wedgeDown){
-            robot.wedge.down().schedule();
-            wedgeDown = false;
-        }
-        if(gamepad1.yWasPressed() && !wedgeDown){
-            robot.wedge.up().schedule();
-            wedgeDown = true;
+        if (gamepad1.yWasPressed()) {
+            if (wedgeDown) {
+                robot.wedge.down().schedule();
+            } else {
+                robot.wedge.up().schedule();
+            }
+            wedgeDown = !wedgeDown;
         }
 
         if(gamepad1.bWasPressed()){

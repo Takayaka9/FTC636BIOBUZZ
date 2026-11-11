@@ -34,8 +34,8 @@ public class ScrimsAuto extends BaseOpMode {
                         r.followPath(ap.flower1())
                 ),
                 waitMs(1000),
-                r.intake.stop(),
                 r.followPath(ap.flower1ToShoot2()),
+                r.intake.stop(),
                 r.shoot(),
                 parallel(
                         r.intake.in(),
@@ -43,8 +43,8 @@ public class ScrimsAuto extends BaseOpMode {
                         r.followPath(ap.shootToFlower2())
                 ),
                 waitMs(1000),
-                r.intake.stop(),
                 r.followPath(ap.flower2ToShoot2()),
+                r.intake.stop(),
                 r.shoot(),
                 r.wedge.up(),
                 r.followPath(ap.park())

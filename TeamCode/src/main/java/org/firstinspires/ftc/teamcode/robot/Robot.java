@@ -6,6 +6,8 @@ import static com.pedropathing.ivy.commands.Commands.waitMs;
 import static com.pedropathing.ivy.groups.Groups.sequential;
 
 import com.bylazar.configurables.annotations.Configurable;
+import com.bylazar.telemetry.PanelsTelemetry;
+import com.bylazar.telemetry.TelemetryManager;
 import com.pedropathing.follower.Follower;
 import com.pedropathing.ivy.Command;
 import com.pedropathing.math.Pose;
@@ -32,6 +34,7 @@ public class Robot {
     //our robot class; name to be changed
     //add all functions that require multiple subsystems that are used in both auto and tele here
     public Follower follower;
+    TelemetryManager telemetry;
     public final Flywheel fly;
     public final Hood hood;
     public final Intake intake;
@@ -46,6 +49,7 @@ public class Robot {
     //initializing all of our subsystems
     public Robot(HardwareMap h, Alliance a){
         follower = Constants.create(h);
+        telemetry = PanelsTelemetry.INSTANCE.getTelemetry();
         fly = new Flywheel(h);
         turret = new Turret(h);
         hood = new Hood(h);
@@ -59,6 +63,8 @@ public class Robot {
     }
     public void periodic(){
         follower.update();
+        telemetry.update();
+        returnData("Pose", follower.pose());
         fly.run(fly.getTarget());
     }
     public void automatic(){
@@ -76,8 +82,7 @@ public class Robot {
         if(a == Alliance.RED){
             hivePos = RobotConstants.redHive;
             flowerHivePos = RobotConstants.redHiveFlower;
-        }
-        else if(a == Alliance.BLUE){
+        } else if(a == Alliance.BLUE){
             hivePos = RobotConstants.blueHive;
             flowerHivePos = RobotConstants.blueHiveFlower;
         }
@@ -86,8 +91,7 @@ public class Robot {
         if(side == Sides.NONFLOWER){
             hiveAim = flowerHivePos;
             side = Sides.FLOWER;
-        }
-        else if(side == Sides.FLOWER){
+        } else if(side == Sides.FLOWER){
             hiveAim = hivePos;
             side = Sides.NONFLOWER;
         }
@@ -100,6 +104,7 @@ public class Robot {
     public static int shootWait = 1000;
     public Command shoot(){
         return sequential(
+                intake.stop(),
                 stop.open(),
                 intake.in(),
                 waitMs(shootWait),
@@ -111,6 +116,9 @@ public class Robot {
          return follow(follower, p);
     }
     public void relocalize(){
-        follower.setPose(reloc);
+        follower.setPose(RobotConstants.reloc);
+    }
+    public void returnData(String key, Object value){
+        telemetry.addData(key, value);
     }
 }
