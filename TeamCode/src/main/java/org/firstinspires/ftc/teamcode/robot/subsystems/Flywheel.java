@@ -56,7 +56,11 @@ public class Flywheel {
     }
     //runs the actual flywheel
     public void run(double target){
-        pid(target, fly);
+        if(!targetReached(target)){
+            fly.setPower(1);
+        } else{
+            pid(target, fly);
+        }
     }
     public void stop(){
         fly.setPower(0);
@@ -69,7 +73,7 @@ public class Flywheel {
 //        return instant(() -> run(getTarget()));
 //    }
     public boolean targetReached(double target){
-        return Math.abs(target - fly.getVelocity()) < 110;
+        return (target - fly.getVelocity()) < 80;
     }
     public static double Kp = 0.003;
     public static double Kd = 0;
