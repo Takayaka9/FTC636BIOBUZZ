@@ -68,12 +68,8 @@ public class Flywheel {
     public double telemetry(){
         return fly.getVelocity();
     }
-
-//    public Command runFlywheel(){
-//        return instant(() -> run(getTarget()));
-//    }
     public boolean targetReached(double target){
-        return (target - fly.getVelocity()) < 80;
+        return (target - fly.getVelocity()) < 60;
     }
     public static double Kp = 0.003;
     public static double Kd = 0;
@@ -81,7 +77,6 @@ public class Flywheel {
     public static double Ks = 0.2;
     public static double minActiveTps = 900;
     public static double maxError = 3;
-    //public static double Kf = 0.00036;
     //really ugly interpLUT system
     static double d1 = 36; static double r1 = 850;//tuned
     static double d2 = 53.6; static double r2 = 1000;
