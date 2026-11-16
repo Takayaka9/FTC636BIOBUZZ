@@ -43,8 +43,8 @@ public class FlyHoodTester extends BaseOpMode {
         hood = new Hood(hardwareMap);
         fly = new Flywheel(hardwareMap);
         i = new Intake(hardwareMap);
-        s = new Stopper(hardwareMap);
-        frontRight = hardwareMap.get(DcMotorEx.class, "fr");
+        //s = new Stopper(hardwareMap);
+        //frontRight = hardwareMap.get(DcMotorEx.class, "fr");
         telemetryManager = PanelsTelemetry.INSTANCE.getTelemetry();
         //telemetry = PanelsTelemetry.INSTANCE.getTelemetry();
         //telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
@@ -64,17 +64,17 @@ public class FlyHoodTester extends BaseOpMode {
         }
         else if(gamepad1.left_bumper){
             i.setMotorPower(-1);
-            frontRight.setPower(1);
+            //frontRight.setPower(1);
         }
         else{
             i.setMotorPower(0);
         }
-        if(gamepad1.a){
-            schedule(s.open());
-        }
-        if(gamepad1.b){
-            schedule(s.close());
-        }
+//        if(gamepad1.a){
+//            s.open().schedule();
+//        }
+//        if(gamepad1.b){
+//            s.close().schedule();
+//        }
         //telemetry.addData("distance from non-flower red hive", hive.distance(follower.pose()));
 //        telemetry.debug("hood angle", position);
 //        telemetry.debug("flywheel power", flypower);

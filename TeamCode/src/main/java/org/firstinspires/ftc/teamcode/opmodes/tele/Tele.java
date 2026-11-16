@@ -3,12 +3,14 @@ package org.firstinspires.ftc.teamcode.opmodes.tele;
 import com.bylazar.configurables.annotations.Configurable;
 import com.pedropathing.drivetrain.DrivePowers;
 import com.pedropathing.follower.ManualDrive;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.opmodes.BaseOpMode;
 import org.firstinspires.ftc.teamcode.robot.Robot;
 import org.firstinspires.ftc.teamcode.util.Alliance;
 import org.firstinspires.ftc.teamcode.util.RobotConstants;
 @Configurable
+@TeleOp
 public class Tele extends BaseOpMode {
     Robot robot;
     Alliance a;

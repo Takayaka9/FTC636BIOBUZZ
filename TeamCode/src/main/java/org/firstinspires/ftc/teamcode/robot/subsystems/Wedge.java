@@ -18,15 +18,15 @@ public class Wedge {
         pivotL = h.get(Servo.class, "wedgeL");
         pivotR = h.get(Servo.class, "wedgeR");
     }
-    public void setPosition(double position){
+    public void setPos(double position){
         pivotL.setPosition(position);
         pivotR.setPosition(1-position);
     }
     //public Wedge(HardwareMap h){ pivotR = h.get(Servo.class, "wedgeR")};
     public CommandBuilder up(){
-        return instant(() -> setPosition(up));
+        return instant(() -> setPos(up));
     }
     public CommandBuilder down(){
-        return instant(() -> setPosition(down));
+        return instant(() -> setPos(down));
     }
 }
