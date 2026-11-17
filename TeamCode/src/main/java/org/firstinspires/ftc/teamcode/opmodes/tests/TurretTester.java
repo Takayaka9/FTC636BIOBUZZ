@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.opmodes.tests;
 
+import com.pedropathing.api.PoseFactory;
 import com.pedropathing.follower.Follower;
 import com.pedropathing.math.Pose;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -17,7 +18,12 @@ public class TurretTester extends BaseOpMode {
         super.init();
         t = new Turret(hardwareMap);
         f = Constants.create(hardwareMap);
-        f.setPose(new Pose(72, 72, 0));
+    }
+    PoseFactory p = PoseFactory.degrees();
+    Pose startPose = p.of(72, 72, 0);
+    @Override
+    public void start(){
+        f.setPose(startPose);
     }
     Pose goalFlower = RobotConstants.redHiveFlower;
     Pose goal = RobotConstants.redHive;

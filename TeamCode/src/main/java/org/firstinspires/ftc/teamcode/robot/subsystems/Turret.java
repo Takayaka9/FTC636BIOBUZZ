@@ -23,6 +23,7 @@ public class Turret {
         t = hardwareMap.get(DcMotorEx.class, "turret");
         t.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
         t.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+        t.setDirection(DcMotorEx.Direction.REVERSE);
         //f = follower;
         encoderPositionOffsetTicks = 0;
         manualAngleOffsetRadians = 0;
@@ -38,7 +39,7 @@ public class Turret {
         double robotHeading = current.heading();
         // Use the shortest signed angle so mirrored blue headings near the +/-pi wrap
         // don't send the turret to the opposite hard stop.
-        double turretAngle = normalizeSigned(hiveAngle - robotHeading) + manualAngleOffsetRadians + f.tangentialVelocity()*multiplier;
+        double turretAngle = normalizeSigned(hiveAngle - robotHeading);// + manualAngleOffsetRadians + f.tangentialVelocity()*multiplier;
         //will change below based on turret limits
         double targetPos = turretAngle * TICKS_PER_RADIAN;
         turnTurret(targetPos);
