@@ -21,6 +21,7 @@ public class Turret {
     private double manualAngleOffsetRadians;
     public Turret(HardwareMap hardwareMap){
         t = hardwareMap.get(DcMotorEx.class, "turret");
+        t.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
         t.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
         t.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
         t.setDirection(DcMotorEx.Direction.REVERSE);
@@ -86,13 +87,14 @@ public class Turret {
         turretTime.reset();
 
         double output = (error * TurretConstants.Kp);
+        output = Math.max(-0.5, Math.min(0.5, output)); //slowing it down for testing
 
         t.setPower(output);
     }
     @SuppressWarnings("FieldMayBeFinal")
     //@Configurable
     public static class TurretConstants {
-        private static double Kp = 0.03;
+        private static double Kp = 0.02; //originaly 0.03
         private static double Kf = -0.1;
         private static double Ki = 0;
         public static final double overrideSensitivity = 10;

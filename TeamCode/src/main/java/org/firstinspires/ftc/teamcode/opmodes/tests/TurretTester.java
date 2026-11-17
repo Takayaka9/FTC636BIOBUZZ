@@ -32,5 +32,9 @@ public class TurretTester extends BaseOpMode {
         super.loop();
         f.update();
         t.aim(goalFlower, f.pose(), f);
+
+        //t.turnTurret(117); //testing turret to a set rotations
+        telemetry.addData("turret ticks", t.getPosition());
+        telemetry.update();
     }
 }
