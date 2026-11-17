@@ -72,8 +72,6 @@ public class Tele extends BaseOpMode {
             wedgeDown = !wedgeDown;
         }
 
-        if(gamepad1.bWasPressed()){
-            robot.switchSide();
-        }
+
     }
 }

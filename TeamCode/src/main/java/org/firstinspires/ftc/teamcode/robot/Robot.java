@@ -68,6 +68,7 @@ public class Robot {
         fly.run(fly.getTarget());
     }
     public void automatic(){
+        switchSide();
         turret.aim(hiveAim, follower.pose(), follower);
         hood.angleHood(hiveAim, follower.pose());
         fly.setTarget(hiveAim, follower.pose());
@@ -88,10 +89,10 @@ public class Robot {
         }
     }
     public void switchSide(){
-        if(side == Sides.NONFLOWER){
+        if(follower.pose().x()>=70.75){
             hiveAim = flowerHivePos;
             side = Sides.FLOWER;
-        } else if(side == Sides.FLOWER){
+        } else if(follower.pose().x()<70.75){
             hiveAim = hivePos;
             side = Sides.NONFLOWER;
         }
