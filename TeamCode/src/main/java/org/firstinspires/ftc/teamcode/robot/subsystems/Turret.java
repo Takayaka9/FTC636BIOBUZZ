@@ -24,7 +24,7 @@ public class Turret {
         t.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
         t.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
         t.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
-        t.setDirection(DcMotorEx.Direction.REVERSE);
+       // t.setDirection(DcMotorEx.Direction.REVERSE);
         //f = follower;
         encoderPositionOffsetTicks = 0;
         manualAngleOffsetRadians = 0;

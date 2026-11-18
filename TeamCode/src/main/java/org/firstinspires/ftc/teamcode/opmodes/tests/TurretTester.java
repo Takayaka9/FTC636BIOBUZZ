@@ -16,10 +16,9 @@ public class TurretTester extends BaseOpMode {
     Turret t;
     Follower f;
     TelemetryManager tm;
-    Pose startPose = new Pose(72, 72, Math.toRadians(180));
+    Pose startPose = new Pose(72, 72, Math.toRadians(0)); //72, 72, 0/180/270
     Pose goalFlower = RobotConstants.redHiveFlower;
     Pose goal = RobotConstants.redHive;
-
     @Override
     public void init() {
         super.init();
