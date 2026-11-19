@@ -19,7 +19,7 @@ public class Flywheel {
         fly = hardwareMap.get(DcMotorEx.class, "fly");
         fly.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         fly.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
-        fly.setDirection(DcMotorEx.Direction.REVERSE);
+        //fly.setDirection(DcMotorEx.Direction.REVERSE);
         lut.add(0, r1);
         lut.add(d1, r1);
         lut.add(1000, r6);

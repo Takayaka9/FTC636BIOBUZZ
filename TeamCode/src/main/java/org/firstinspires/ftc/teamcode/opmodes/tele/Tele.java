@@ -1,21 +1,21 @@
 package org.firstinspires.ftc.teamcode.opmodes.tele;
 
 import com.bylazar.configurables.annotations.Configurable;
-import com.pedropathing.drivetrain.DrivePowers;
-import com.pedropathing.follower.ManualDrive;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-
+import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.opmodes.BaseOpMode;
 import org.firstinspires.ftc.teamcode.robot.Robot;
 import org.firstinspires.ftc.teamcode.util.Alliance;
 import org.firstinspires.ftc.teamcode.util.RobotConstants;
 @Configurable
-@TeleOp
+//@TeleOp
 public class Tele extends BaseOpMode {
     Robot robot;
     Alliance a;
-    boolean automatic = true;
+    boolean automatic = false;
     boolean wedgeDown = true;
+    public static double shootDelay = 1;
+    ElapsedTime shootTimer = new ElapsedTime();
+    boolean wasShooting = false;
     public Tele(Alliance a){
         this.a = a;
     }
@@ -34,8 +34,8 @@ public class Tele extends BaseOpMode {
         robot.periodic();
 
         double forward = -gamepad1.left_stick_y;
-        double lateral = gamepad1.left_stick_x;
-        double turn = gamepad1.right_stick_x;
+        double lateral = -gamepad1.left_stick_x;
+        double turn = -gamepad1.right_stick_x;
 
         robot.follower.manual(forward, lateral, turn);
 
@@ -45,14 +45,23 @@ public class Tele extends BaseOpMode {
             robot.manual();
         }
 
-        if(gamepad1.aWasPressed()){
+        /*if(gamepad1.aWasPressed()){
             automatic = !automatic;
-        }
+        }*/
 
         if (gamepad1.left_bumper) {
+            if (!wasShooting) {          // first loop of this press
+                shootTimer.reset();
+                wasShooting = true;
+            }
             robot.stop.open().schedule();
-            robot.intake.in().schedule();
+            if (shootTimer.seconds() > shootDelay) {
+                robot.intake.in().schedule();     // delay is over, feed the balls
+            } else {
+                robot.intake.stop().schedule();   // wait for the stopper to clear
+            }
         } else {
+            wasShooting = false;
             robot.stop.close().schedule();
             if (gamepad1.right_bumper) {
                 robot.intake.in().schedule();

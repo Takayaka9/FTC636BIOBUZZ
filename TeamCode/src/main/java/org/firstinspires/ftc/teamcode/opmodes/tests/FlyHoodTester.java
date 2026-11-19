@@ -27,7 +27,7 @@ import org.firstinspires.ftc.teamcode.util.RobotConstants;
 @TeleOp
 @Configurable
 public class FlyHoodTester extends BaseOpMode {
-    Hood hood;
+    //Hood hood;
     Flywheel fly;
     Intake i;
     Stopper s;
@@ -40,7 +40,7 @@ public class FlyHoodTester extends BaseOpMode {
     //Follower follower;
     @Override
     public void init() {
-        hood = new Hood(hardwareMap);
+       // hood = new Hood(hardwareMap);
         fly = new Flywheel(hardwareMap);
         i = new Intake(hardwareMap);
         //s = new Stopper(hardwareMap);
@@ -57,7 +57,7 @@ public class FlyHoodTester extends BaseOpMode {
         telemetryManager.addData("fly speed", fly.telemetry());
         telemetryManager.addData("target", flypower);
         //telemetry.update();
-        hood.setPosition(position);
+       // hood.setPosition(position);
         fly.run(flypower);
         if(gamepad1.right_bumper){
             i.setMotorPower(0.8);

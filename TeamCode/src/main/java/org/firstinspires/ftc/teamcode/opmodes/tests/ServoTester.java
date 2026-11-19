@@ -17,7 +17,7 @@ import org.firstinspires.ftc.teamcode.robot.subsystems.Wedge;
 @Configurable
 public class ServoTester extends BaseOpMode {
     Stopper stopper;
-    Hood hood;
+    //Hood hood;
     Wedge wedge;
     public static String mode = "nothing";
     public static double position = 0;
@@ -25,12 +25,12 @@ public class ServoTester extends BaseOpMode {
     public void init() {
         //telemetry = PanelsTelemetry.INSTANCE.getTelemetry();
         stopper = new Stopper(hardwareMap);
-        hood = new Hood(hardwareMap);
+        //hood = new Hood(hardwareMap);
         wedge = new Wedge(hardwareMap);
     }
 
     @Override
     public void loop() {
-        hood.setPosition(position);
+       stopper.setPosition(position);
     }
 }

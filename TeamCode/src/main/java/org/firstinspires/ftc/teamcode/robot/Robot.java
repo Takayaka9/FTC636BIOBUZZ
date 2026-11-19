@@ -36,7 +36,7 @@ public class Robot {
     public Follower follower;
     TelemetryManager telemetry;
     public final Flywheel fly;
-    public final Hood hood;
+    //public final Hood hood;
     public final Intake intake;
     public final Stopper stop;
     public final Turret turret;
@@ -52,7 +52,7 @@ public class Robot {
         telemetry = PanelsTelemetry.INSTANCE.getTelemetry();
         fly = new Flywheel(h);
         turret = new Turret(h);
-        hood = new Hood(h);
+        //hood = new Hood(h);
         intake = new Intake(h);
         stop = new Stopper(h);
         wedge = new Wedge(h);
@@ -70,13 +70,13 @@ public class Robot {
     public void automatic(){
         switchSide();
         turret.aim(hiveAim, follower.pose(), follower);
-        hood.angleHood(hiveAim, follower.pose());
+        //hood.angleHood(hiveAim, follower.pose());
         fly.setTarget(hiveAim, follower.pose());
     }
     public void manual(){
         turret.turnTurret(0);
-        hood.setPosition(0.9);
-        fly.setTarget(1350);
+        //hood.setPosition(0.9);
+        fly.setTarget(1700);
         //find neutral values for both!
     }
     private void setHives(Alliance a){
