@@ -38,12 +38,12 @@ public class Tele extends BaseOpMode {
         double turn = -gamepad1.right_stick_x;
 
         robot.follower.manual(forward, lateral, turn);
-
-        if(automatic){
-            robot.automatic();
-        } else{
-            robot.manual();
-        }
+        robot.manual();
+//        if(automatic){
+//            robot.automatic();
+//        } else{
+//            robot.manual();
+//        }
 
         /*if(gamepad1.aWasPressed()){
             automatic = !automatic;

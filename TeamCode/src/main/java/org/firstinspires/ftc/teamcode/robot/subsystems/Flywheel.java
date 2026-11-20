@@ -1,14 +1,9 @@
 package org.firstinspires.ftc.teamcode.robot.subsystems;
 
-import static com.pedropathing.ivy.commands.Commands.instant;
-import static com.pedropathing.ivy.groups.Groups.sequential;
-
 import com.bylazar.configurables.annotations.Configurable;
-import com.pedropathing.ivy.Command;
 import com.pedropathing.math.Pose;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.seattlesolvers.solverslib.util.InterpLUT;
 @Configurable
@@ -56,7 +51,7 @@ public class Flywheel {
     }
     //runs the actual flywheel
     public void run(double target){
-        if(!targetReached(target)){
+        if(!nearTarget(target)){
             fly.setPower(1);
         } else{
             pid(target, fly);
@@ -68,10 +63,10 @@ public class Flywheel {
     public double telemetry(){
         return fly.getVelocity();
     }
-    public boolean targetReached(double target){
-        return (target - fly.getVelocity()) < 60;
+    public boolean nearTarget(double target){
+        return (target - fly.getVelocity()) < 50;
     }
-    public static double Kp = 0.003;
+    public static double Kp = 0.01;
     public static double Kd = 0;
     public static double Kv = 0.00029;
     public static double Ks = 0.2;

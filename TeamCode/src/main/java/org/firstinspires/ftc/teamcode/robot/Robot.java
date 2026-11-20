@@ -73,10 +73,11 @@ public class Robot {
         //hood.angleHood(hiveAim, follower.pose());
         fly.setTarget(hiveAim, follower.pose());
     }
+    public static int flySpeedManual = 1600;
     public void manual(){
         turret.turnTurret(0);
         //hood.setPosition(0.9);
-        fly.setTarget(1700);
+        fly.setTarget(flySpeedManual);
         //find neutral values for both!
     }
     private void setHives(Alliance a){
