@@ -64,7 +64,7 @@ public class Flywheel {
         return fly.getVelocity();
     }
     public boolean nearTarget(double target){
-        return (target - fly.getVelocity()) < 50;
+        return (target - fly.getVelocity()) < 80;
     }
     public static double Kp = 0.01;
     public static double Kd = 0;
