@@ -49,7 +49,7 @@ public class Tele extends BaseOpMode {
             automatic = !automatic;
         }*/
 
-        if (gamepad1.left_bumper) {
+        if (gamepad2.left_bumper) {
             if (!wasShooting) {          // first loop of this press
                 shootTimer.reset();
                 wasShooting = true;
@@ -63,16 +63,16 @@ public class Tele extends BaseOpMode {
         } else {
             wasShooting = false;
             robot.stop.close().schedule();
-            if (gamepad1.right_bumper) {
+            if (gamepad2.right_bumper) {
                 robot.intake.in().schedule();
-            } else if (gamepad1.left_trigger > 0.3) {
+            } else if (gamepad2.left_trigger > 0.3) {
                 robot.intake.out().schedule();
             } else {
                 robot.intake.stop().schedule();
             }
         }
 
-        if (gamepad1.yWasPressed()) {
+        if (gamepad2.yWasPressed()) {
             if (wedgeDown) {
                 robot.wedge.down().schedule();
             } else {
