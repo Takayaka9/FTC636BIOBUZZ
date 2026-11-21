@@ -65,7 +65,11 @@ public class Robot {
         follower.update();
         telemetry.update();
         returnData("Pose", follower.pose());
-        fly.run(fly.getTarget());
+        if (fly.getTarget() > 0) {
+            fly.run(fly.getTarget());
+        } else {
+            fly.stop();
+        }
     }
     public void automatic(){
         switchSide();

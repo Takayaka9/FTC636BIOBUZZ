@@ -14,6 +14,7 @@ public class Tele extends BaseOpMode {
     boolean automatic = false;
     boolean wedgeDown = true;
     public static double shootDelay = 1;
+    public static double slowSpeed = 0.35; // drive speed multiplier while gamepad1 right bumper is held
     ElapsedTime shootTimer = new ElapsedTime();
     boolean wasShooting = false;
     public Tele(Alliance a){
@@ -37,8 +38,24 @@ public class Tele extends BaseOpMode {
         double lateral = -gamepad1.left_stick_x;
         double turn = -gamepad1.right_stick_x;
 
+// Slow mode for precise positioning
+        if (gamepad1.right_bumper) {
+            forward *= slowSpeed;
+            lateral *= slowSpeed;
+            turn *= slowSpeed;
+        }
+
+
+
         robot.follower.manual(forward, lateral, turn);
         robot.manual();
+
+        // Flywheel only spins while gamepad 2 holds right trigger
+        if (gamepad2.right_trigger > 0.3) {
+            robot.fly.setTarget(Robot.flySpeedManual);
+        } else {
+            robot.fly.setTarget(0);
+        }
 //        if(automatic){
 //            robot.automatic();
 //        } else{
@@ -81,6 +98,9 @@ public class Tele extends BaseOpMode {
             wedgeDown = !wedgeDown;
         }
 
+        telemetry.addData("flywheel speed", robot.fly.telemetry());
+        telemetry.addData("flywheel target", robot.fly.getTarget());
+        telemetry.update();
 
     }
 }

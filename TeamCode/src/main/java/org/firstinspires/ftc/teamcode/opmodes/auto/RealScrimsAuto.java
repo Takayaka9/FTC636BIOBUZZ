@@ -15,13 +15,13 @@ import org.firstinspires.ftc.teamcode.robot.subsystems.Turret;
 import org.firstinspires.ftc.teamcode.util.RobotConstants;
 
 @Configurable
-@Autonomous(name = "RUN THIS AUTO", group = "Auto")
+@Autonomous(name = "AAA RUN THIS AUTO", group = "Auto")
 public class RealScrimsAuto extends LinearOpMode {
-    public static double spinUpTimeout = 3;  // max seconds to wait for the flywheel to get up to speed
+    public static double spinUpTimeout = 5;  // max seconds to wait for the flywheel to get up to speed
     public static double stopperDelay = 0.5; // seconds between stopper opening and intake starting
     public static double feedTime = 4;       // seconds to run the intake (long enough for all 4 balls)
     public static double drivePower = 0.3;
-    public static double driveTime = 0.15;   // seconds to drive forward; tune until it moves ~1 inch
+    public static double driveTime = 0.3;   // seconds to drive forward; tune until it moves ~1 inch
 
     Flywheel fly;
     Intake intake;
@@ -51,7 +51,7 @@ public class RealScrimsAuto extends LinearOpMode {
         bl.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         br.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        stop.setPosition(Stopper.close);
+        stop.setPosition(Stopper.open);
         fly.setTarget(Robot.flySpeedManual); // same speed as TeleOp
 
         waitForStart();
@@ -61,16 +61,11 @@ public class RealScrimsAuto extends LinearOpMode {
         while (opModeIsActive() && !fly.nearTarget(fly.getTarget()) && timer.seconds() < spinUpTimeout) {
             update();
         }
-
-        // 2. Open the stopper and give it time to get out of the way
-        stop.setPosition(Stopper.open);
-        waitWhileUpdating(stopperDelay);
-
         // 3. Feed all 4 balls into the flywheel
         intake.setMotorPower(Intake.in);
         waitWhileUpdating(feedTime);
         intake.setMotorPower(0);
-        stop.setPosition(Stopper.close);
+        stop.setPosition(Stopper.open);
 
         // 4. Turn off the flywheel
         flywheelOn = false;
@@ -97,10 +92,7 @@ public class RealScrimsAuto extends LinearOpMode {
 
     // Wait without freezing the flywheel/turret control
     private void waitWhileUpdating(double seconds) {
-        ElapsedTime t = new ElapsedTime();
-        while (opModeIsActive() && t.seconds() < seconds) {
-            update();
-        }
+        waitWhileUpdating(spinUpTimeout);
     }
 
     private void setDrivePower(double power) {

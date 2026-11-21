@@ -68,7 +68,7 @@ public class Flywheel {
     }
     public static double Kp = 0.01;
     public static double Kd = 0;
-    public static double Kv = 0.00029;
+    public static double Kv = 0;
     public static double Ks = 0.2;
     public static double minActiveTps = 900;
     public static double maxError = 3;

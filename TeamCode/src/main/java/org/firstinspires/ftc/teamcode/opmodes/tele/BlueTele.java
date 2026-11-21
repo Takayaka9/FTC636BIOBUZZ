@@ -3,7 +3,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.util.Alliance;
 
 
-@TeleOp(name = "AAA RUN THIS TELE", group = "TeleOp")
+@TeleOp(name = "Blue Tele", group = "TeleOp")
 public class BlueTele extends Tele{
     public BlueTele(){
         super(Alliance.BLUE);
